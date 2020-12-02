@@ -27,17 +27,18 @@ app.route('/api')
   })
   .post(async (req, res) => {
 
-    const pgData = await fetch('https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json');
-    const jsonObj = await pgData.json();
+    const course = await fetch('https://api.planetterp.com/v1/course?name=INST126');
+    const jsonObj = await course.json();
 
     console.log('POST request detected');
     console.log('Form data in res.body', req.body);
-    console.log(pgData);
+    console.log(course);
     console.log(jsonObj);
     res.json(jsonObj);
-    //res.json(countries);
+
   });
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`);
 });
+
