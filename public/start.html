@@ -1,29 +1,43 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Start Page</title>
-</head>
-<body>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container flex-outer">
+        <div class="header row justify-content-center">
+          <img src="umd.png" />
+          <h1>Info Terp</h1>
+        </div>
 
-    <div id="start-page">
+        <div class="row justify-content-center">
+          <div class="col-6">
+            <form>
+              <div class="form-group">
+                <label for="Search">Search:</label>
+                <input
+                  type="text"
+                  placeholder="Please type the 3 or 4 digit class code"
+                  class="form-control textInput"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
 
-        <div class="header">
-            <img src="umd.png"/>
-               <h1>Info Terp</h1>
-           </div>
-       
-           <div class="start-search">
-               <input type="text" class="textentry" placeholder="Please enter in a class name!"></input>
-           </div>
-           <div id="navContainer">
+        <div class="row justify-content-center">
+          <div class="filtered">
             <ul class="suggestions"></ul>
-            </div>
-           <div class="start-back-button">
-               <button id="back" onclick="location.href = 'index.html'">Back</button>
-           </div>
+          </div>
+        </div>
 
+        <div class="start-back-button">
+          <button id="back" onclick="location.href = 'index.html'">Back</button>
+        </div>
+      </div>
     </div>
-
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>

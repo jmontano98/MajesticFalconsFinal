@@ -21,21 +21,15 @@ app.use((req, res, next) => {
 });
 
 app.route('/api')
-  .get((req, res) => {
-    console.log('GET request detected');
-    res.send(`Lab 5 for ${process.env.NAME}`);
-  })
-  .post(async (req, res) => {
-
-    const course = await fetch('https://api.planetterp.com/v1/course?name=INST126');
-    const jsonObj = await course.json();
-
+.get(async (req, res) => {
+  console.log('GET request detected');
+  const data = await fetch('https://api.planetterp.com/v1/courses?department=INST');
+  const json = await data.json();
+  console.log('data from fetch', json);
+  res.json(json);
+})
+  .post((req, res) => {
     console.log('POST request detected');
-    console.log('Form data in res.body', req.body);
-    console.log(course);
-    console.log(jsonObj);
-    res.json(jsonObj);
-
   });
 
 app.listen(port, () => {
