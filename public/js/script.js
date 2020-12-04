@@ -17,13 +17,26 @@ function findMatches(wordToMatch, courses) {
     })
 }
 
+async function submitSelection(course_number){
+    console.log('submitSelection', course_number);
+    const request = await fetch('/api', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({course_num: course_number})
+    })
+
+    const courseInfo = await request.json();
+}
+
 function displayMatches(){
     
     const matchArray = findMatches(this.value, courses);
     const html = matchArray.map(obj => {
         return `
             <div class="result">
-                <span class="dept-num">${obj.department}${obj.course_number}</span><br>
+                <button onclick="submitSelection('${obj.course_number}')" id="${obj.course_number}" class="button" name="selection" type="button">${obj.department}${obj.course_number}</button><br>
             </div>
         `;
     }).join('');
