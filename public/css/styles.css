@@ -17,6 +17,27 @@ body {
     align-items: center;
 }
 
+.suggestions {
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+}
+
+.result {
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+}
+
+.nav-buttons {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+}
+
 .form-group {
     padding: 10px;
     display: flex;
