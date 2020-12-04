@@ -1,0 +1,32 @@
+body {
+    background: #eee;
+
+}
+
+.header {
+    margin: 0 auto;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#homepage {
+    margin: 0 auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+img {
+    align-content: center;
+    width: 100px;
+}
+
+.start-back-button, .about-back-button, .doc-back-button {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
