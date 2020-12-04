@@ -1,0 +1,107 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Majestic Falcons Final</title>
+    <link href="css/styles.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;600&display=swap" rel="stylesheet"> 
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container flex-outer">
+            <div class="header row justify-content-center">
+                <img src="images/shell.png" />
+                <h1>Info Terp</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-wrapper">
+        <div class="table-container">
+            <h2 class="table-header">Sections for INST377</h2>
+            <table>
+                <thead>
+                  <tr>
+                    <th>Section</th>
+                    <th>GPA Change</th>
+                    <th>Instructor</th>
+                    <th>Seats</th>
+                    <th>Schedule</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-column="Section">0101</td>
+                    <td data-column="GPA Change"><div class="trend">Trending Down</div></td>
+                    <td data-column="Instructor">Instructor 1</td>
+                    <td data-column="Seats">51/60</td>
+                    <td data-column="Schedule">TuTh 2:00pm - 4:00pm</td>
+                    <td class="view-section" data-column="Button">
+                        <button class="red-button">View Section</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td data-column="Section">0102</td>
+                    <td data-column="GPA Change"><div class="trend">Trending Up</div></td>
+                    <td data-column="Instructor">Professor 2</td>
+                    <td data-column="Seats">45/60</td>
+                    <td data-column="Schedule">TuTh 2:00pm - 4:00pm</td>
+                    <td class="view-section" data-column="Button">
+                        <button class="red-button">View Section</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td data-column="Section">0103</td>
+                    <td data-column="GPA Change"><div class="trend">Trending Up</div></td>
+                    <td data-column="Instructor">Instructor 3</td>
+                    <td data-column="Seats">30/60</td>
+                    <td data-column="Schedule">TuTh 2:00pm - 4:00pm</td>
+                    <td class="view-section" data-column="Button">
+                        <button class="red-button">View Section</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td data-column="Section">0104</td>
+                    <td data-column="GPA Change"><div class="trend">Trending Down</div></td>
+                    <td data-column="Instructor">Professor 4</td>
+                    <td data-column="Seats">25/60</td>
+                    <td data-column="Schedule">TuTh 2:00pm - 4:00pm</td>
+                    <td class="view-section" data-column="Button">
+                        <button class="red-button">View Section</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td data-column="Section">0105</td>
+                    <td data-column="GPA Change"><div class="trend">Trending Down</div></td>
+                    <td data-column="Instructor">Instructor 5</td>
+                    <td data-column="Seats">57/60</td>
+                    <td data-column="Schedule">TuTh 2:00pm - 4:00pm</td>
+                    <td class="view-section" data-column="Button">
+                        <button class="red-button">View Section</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+
+        <div class="row justify-content-center">
+          <div class="filtered">
+            <ul class="suggestions"></ul>
+          </div>
+        </div>
+
+        <div class="nav-buttons">
+            <button id="about" onclick = "location.href = 'about.html'">About</button><br><br>
+            <button id="doc" onclick = "location.href = 'doc.html'">Documentation</button>
+        </div>
+
+      </div>
+    </div>
+    <script src="js/script.js"></script>
+  </body>
+
+
+</html>
