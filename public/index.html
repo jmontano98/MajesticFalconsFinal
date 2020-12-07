@@ -4,6 +4,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Majestic Falcons Final</title>
     <link href="css/styles.css" rel="stylesheet">
+    <script
+    src="https://code.jquery.com/jquery-3.5.1.slim.js"
+    integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="
+    crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;600&display=swap" rel="stylesheet"> 
+
 </head>
 <body>
     <div class="wrapper">
@@ -15,9 +21,9 @@
 
         <div class="row justify-content-center">
           <div class="col-6">
-            <form>
+            <form class="search-bar">
               <div class="form-group">
-                <label for="Search">Search: </label>
+                <label for="Search" class="label-search">Search</label>
                 <input
                   type="text"
                   placeholder="Please type the 3 or 4 digit class code"
@@ -35,8 +41,8 @@
         </div>
 
         <div class="nav-buttons">
-            <button id="about" onclick = "location.href = 'about.html'">About</button><br><br>
-            <button id="doc" onclick = "location.href = 'doc.html'">Documentation</button>
+            <button class="styled-button red" id="about" onclick = "location.href = 'about.html'">About</button><br><br>
+            <button class="styled-button yellow" id="doc" onclick = "location.href = 'doc.html'">Documentation</button>
         </div>
 
       </div>
