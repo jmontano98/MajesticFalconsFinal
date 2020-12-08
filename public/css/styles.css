@@ -74,7 +74,7 @@ Search Results
 /*
 Buttons
 */
-.nav-buttons {
+.nav-buttons, .doc-back-button, .about-back-button {
     display:-webkit-flex;
     display:flex;
     -webkit-justify-content:center;
