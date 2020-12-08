@@ -28,9 +28,13 @@ app.route('/api')
   console.log('data from fetch', json);
   res.json(json);
 })
-  .post((req, res) => {
+  .post(async(req, res) => {
     console.log('POST request detected');
-    console.log('POST request body', req.body);  
+    console.log('POST request body', req.body); 
+    const data = await fetch(`https://api.planetterp.com/v1/grades?course=INST${req.body.course_num}`);
+    const json = await data.json();
+    console.log('data from fetch', json);
+    res.json(json);
   });
 
 app.listen(port, () => {

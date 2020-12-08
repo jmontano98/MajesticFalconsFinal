@@ -27,7 +27,25 @@ async function submitSelection(course_number){
         body: JSON.stringify({course_num: course_number})
     })
 
-    const courseInfo = await request.json();
+    const courseGradeInfo = await request.json();
+    filterSemesters(courseGradeInfo);
+}
+
+function filterSemesters(json){
+    let filteredJson = [];
+    json.forEach(element => {
+        if (element.semester == '202001'){
+            filteredJson.push(element);
+        }
+        else if(element.semester == '201908'){
+            filteredJson.push(element);
+        }
+        else if(element.semester == '201901'){
+            filteredJson.push(element);
+        }
+    });
+
+    console.log('filteredJson: ', filteredJson);
 }
 
 function displayMatches(){
