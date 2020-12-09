@@ -48,7 +48,7 @@ function filterSemesters(json){
     });
 
     console.log('filteredJson: ', filteredJson);
-    localStorage.setItem("filteredJson", filteredJson);
+    localStorage.setItem("filteredJson", JSON.stringify(filteredJson));
     window.location.href = "sections.html";
 }
 
@@ -70,13 +70,45 @@ function displayMatches(){
 
 }
 
+function displayTableRows(){
+    const grades = JSON.parse(localStorage.getItem("filteredJson"));
+
+
+    const html = grades.map(obj => {
+        return `
+
+        <tr>
+                    <td data-column="Section">${obj.section}</td>
+                    <td data-column="GPA Change"><div class="trend">Trending _____</div></td>
+                    <td data-column="Instructor">${obj.professor}</td>
+                    <td class="view-section" data-column="Button">
+                        <button class="red-button">View Section</button>
+                    </td>
+                  </tr>
+        `;
+    }).join('');
+
+    tableBody.innerHTML = html;
+}
+
 const searchInput = document.querySelector('.textInput');
 const suggestions = document.querySelector('.suggestions');
+
+const tableBody = document.querySelector('.table-body');
+const tableHeader = document.querySelector('.table-header');
 
 
 if (searchInput != null) {
     searchInput.addEventListener('change', displayMatches);
     searchInput.addEventListener('keyup', displayMatches);
+}
+
+if(tableBody != null){
+    displayTableRows();
+}
+
+if(tableHeader != null){
+    tableHeader.innerHTML = `Sections for ${JSON.parse(localStorage.getItem("filteredJson"))[0].course}`
 }
 
 
