@@ -123,6 +123,7 @@ Buttons
     font-family: 'Source Sans Pro', sans-serif;
     font-size:15px;
     font-weight:700;
+    cursor: pointer;
   }
 /*
 Search Bar on Index Page
@@ -253,5 +254,12 @@ td, th {
     margin-bottom: 15px;
 }
 
+.graph-header {
+    margin: 0 auto;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
 
 /* Media Queries */

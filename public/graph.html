@@ -16,16 +16,24 @@
         <div class = "container flex-outer">
             <div class = "header">
                 <img src = "images/shell.png">
-                <h1>INST___ Detailed View</h1>
-                <h2>Professor Name</h2>
-                <h2>Section Number</h2>
+                <div class="graph-header">
+                    
+                </div>
+                
+                    
+                
             </div>
             <div id = "graphContainer"></div>
 
-
+            <div class="nav-buttons">
+                <button class="styled-button red" id="about" onclick = "location.href = 'about.html'">About</button><br><br>
+                <button class="styled-button yellow" id="doc" onclick = "location.href = 'doc.html'">Documentation</button><br><br>
+                <button class="styled-button red" id="back" onclick = "location.href = 'sections.html'">Back to sections</button><br><br>
+                <button class="styled-button yellow" id="back" onclick = "location.href = 'index.html'">Back to home</button>
+            </div>
         </div>
     </div>
     <script src="canvasjs.min.js"></script>
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

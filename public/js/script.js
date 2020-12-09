@@ -82,7 +82,7 @@ function displayTableRows(){
                     <td data-column="GPA Change"><div class="trend">Trending _____</div></td>
                     <td data-column="Instructor">${obj.professor}</td>
                     <td class="view-section" data-column="Button">
-                        <button class="red-button" id="view-section" onclick = "location.href = 'graph.html'">View Section</button>
+                        <button class="red-button yellow" id="view-section" onclick = "location.href = 'graph.html'">View Section</button>
 
                         
                     </td>
@@ -92,6 +92,7 @@ function displayTableRows(){
 
     tableBody.innerHTML = html;
 }
+
 
 
 
@@ -169,6 +170,7 @@ const suggestions = document.querySelector('.suggestions');
 
 const tableBody = document.querySelector('.table-body');
 const tableHeader = document.querySelector('.table-header');
+
 
 
 if (searchInput != null) {
