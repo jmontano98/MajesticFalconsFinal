@@ -2,6 +2,8 @@ const endpoint = 'https://api.planetterp.com/v1/courses?department=INST';
 
 const courses = [];
 
+
+
 fetch("/api",
     {
       method: 'GET'
@@ -26,7 +28,7 @@ async function submitSelection(course_number){
         },
         body: JSON.stringify({course_num: course_number})
     })
-
+    localStorage.setItem("course", course_number);
     const courseGradeInfo = await request.json();
     filterSemesters(courseGradeInfo);
 }
@@ -46,6 +48,8 @@ function filterSemesters(json){
     });
 
     console.log('filteredJson: ', filteredJson);
+    localStorage.setItem("filteredJson", filteredJson);
+    window.location.href = "sections.html";
 }
 
 function displayMatches(){
@@ -69,6 +73,10 @@ function displayMatches(){
 const searchInput = document.querySelector('.textInput');
 const suggestions = document.querySelector('.suggestions');
 
-searchInput.addEventListener('change', displayMatches);
-searchInput.addEventListener('keyup', displayMatches);
+
+if (searchInput != null) {
+    searchInput.addEventListener('change', displayMatches);
+    searchInput.addEventListener('keyup', displayMatches);
+}
+
 
