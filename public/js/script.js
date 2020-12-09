@@ -93,6 +93,77 @@ function displayTableRows(){
     tableBody.innerHTML = html;
 }
 
+
+
+function calculateGPAs() {
+    // https://jsfiddle.net/xnvqLgf5/
+    return 
+}
+
+function graphConfigurations(avgGpaDatapoints) {
+    // set your chart configuration here!
+    CanvasJS.addColorSet('customColorSet1', [
+      // add an array of colors here https://canvasjs.com/docs/charts/chart-options/colorset/
+      '#3B5682',
+      '#589492',
+      '#6DA2B2'
+    ]);
+  
+    return {
+      animationEnabled: true,
+      colorSet: 'customColorSet1',
+      title: {
+        text: 'Class Average GPA Over Past 3 Semesters'
+      },
+      axisX: {
+        interval: 1,
+        labelFontSize: 12
+      },
+      axisY2: {
+        interlacedColor: 'rgba(1,77,101,.2)',
+        gridColor: 'rgba(1,77,101,.1)',
+        title: 'Average GPA By Semester',
+        labelFontSize: 12,
+        scaleBreaks: {customBreaks: [
+          {
+            startValue: 40,
+            endValue: 50,
+            color: 'black'
+          },
+          {
+            startValue: 85,
+            endValue: 100,
+            color: 'black'
+          },
+          {
+            startValue: 140,
+            endValue: 175,
+            color: 'black'
+          }
+        ]
+        } // Add your scale breaks here https://canvasjs.com/docs/charts/chart-options/axisy/scale-breaks/custom-breaks/
+      },
+      data: [{
+        type: 'bar',
+        name: 'avgGPA',
+        axisYType: 'secondary',
+        dataPoints: avgGpaDatapoints
+      }]
+    };
+  }
+  
+function useGPAstoMakeGraph() {
+// sessionStorage.setItem('restaurantList', JSON.stringify(jsonFromServer)); // used in lab 7 to provide unit testing support
+  // Process your GPAs list
+  // Make a configuration object for your chart
+  // Instantiate your chart
+  const options = graphConfigurations(calculateGPAs);
+  const chart = new CanvasJS.Chart('graphContainer', options);
+  chart.render();
+}
+
+
+
 const searchInput = document.querySelector('.textInput');
 const suggestions = document.querySelector('.suggestions');
 
