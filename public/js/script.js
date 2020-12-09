@@ -82,7 +82,9 @@ function displayTableRows(){
                     <td data-column="GPA Change"><div class="trend">Trending _____</div></td>
                     <td data-column="Instructor">${obj.professor}</td>
                     <td class="view-section" data-column="Button">
-                        <button class="red-button">View Section</button>
+                        <button class="red-button" id="view-section" onclick = "location.href = 'graph.html'">View Section</button>
+
+                        
                     </td>
                   </tr>
         `;
