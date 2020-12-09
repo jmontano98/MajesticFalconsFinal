@@ -243,7 +243,15 @@ td, th {
     font-weight:700;
 }
 
-
+/* Detailed Graph View */
+#graphContainer {
+    background: gray;
+    border: 2px dotted black;
+    border-radius: 4px;
+    height: 500px;
+    width: 100%;
+    margin-bottom: 15px;
+}
 
 
 /* Media Queries */
