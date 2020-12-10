@@ -73,13 +73,14 @@ function displayMatches(){
 function displayTableRows(){
     const grades = JSON.parse(localStorage.getItem("filteredJson"));
 
-
+    // This is where the sorting happens
+    // Group by prof -> order by Sorting 
     const html = grades.map(obj => {
         return `
 
         <tr>
                     <td data-column="Section">${obj.section}</td>
-                    <td data-column="GPA Change"><div class="trend">Trending _____</div></td>
+                    <td data-column="P/F/W vs. Letter Grading:"><div class="trend">${passFailRatio(obj)}</div></td>
                     <td data-column="Instructor">${obj.professor}</td>
                     <td class="view-section" data-column="Button">
                         <button class="red-button yellow" id="view-section" onclick = "location.href = 'graph.html'">View Section</button>
@@ -94,7 +95,28 @@ function displayTableRows(){
 }
 
 
+function passFailRatio(jsonObj){
 
+    var nonNormalGrades = 0;
+    var normalGrades  = 0;
+
+    for(var i in jsonObj){
+
+        var key = i;
+        var val = jsonObj[i];
+
+        if( key != 'Other' && key != 'W' && key != 'course' && key != 'professor' && key != 'section' && key != 'semester'){
+            normalGrades += val;
+        }
+    }
+
+    nonNormalGrades = jsonObj.Other + jsonObj.W;
+
+
+    return `${nonNormalGrades} vs. ${normalGrades}`;
+
+
+}
 
 function calculateGPAs() {
     // https://jsfiddle.net/xnvqLgf5/
