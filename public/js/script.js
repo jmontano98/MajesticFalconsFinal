@@ -81,6 +81,7 @@ function displayTableRows(){
         <tr>
                     <td data-column="Section">${obj.section}</td>
                     <td data-column="P/F/W vs. Letter Grading:"><div class="trend">${passFailRatio(obj)}</div></td>
+                    <td data-column="Section GPA">${calculateSectionGPA(obj.professor, obj.section, obj.semester)}</td>
                     <td data-column="Instructor">${obj.professor}</td>
                     <td class="view-section" data-column="Button">
                         <button class="red-button yellow" id="view-section" onclick = "location.href = 'graph.html'">View Section</button>
@@ -93,7 +94,6 @@ function displayTableRows(){
 
     tableBody.innerHTML = html;
 }
-
 
 function passFailRatio(jsonObj){
 
@@ -434,7 +434,7 @@ function calculateSectionGPA(professorsName, section, semester) {
                 (currentSection["D+"]) + (currentSection["D"]) + (currentSection["D-"]) + 
                 (currentSection["F"]);
 
-            professorClasses[q][insideSection]["GPA"] = (points/totalGrades);
+            professorClasses[q][insideSection]["GPA"] = (Number((points/totalGrades).toFixed(2)));
         }
         
     }
