@@ -4,29 +4,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Documentation Page</title>
     <link href="css/styles.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   </head>
   <body>
     <div id="doc-page">
       <div class="header">
-        <h1>Documentation</h1>
-        <img src="images/shell.png" />
+        <h1 data-aos="fade-right">Documentation</h1>
+        <img data-aos="fade-right" data-aos-delay="100" src="images/shell.png" />
       </div>
 
       <div class="documentation-instructions">
-        <p>
+        <p class="descriptive-text" data-aos="fade-right" data-aos-delay="200">
           Type in the 3 or 4 digit class code for the INST class you are looking for and select your class when it appears. <br>
           The next screen will show all of the most recent professors who have taught the
           course. Once you select your <br> section, you will see a graph of the last 3 semesters' average GPA. 
         </p>
-        <p>
+        <p class="descriptive-text" data-aos="fade-right" data-aos-delay="300">
           By comparing average GPA over the last 3 semesters, we can obtain a decent snapshot of how the COVID-19 <br> pandemic has affected
           the quality of a class overall, and can provide a recommendation on whether or not a <br> person should sign up for that specific section.
         </p>
       </div>
 
-      <div class="nav-buttons">
+      <div class="nav-buttons" data-aos="fade-right" data-aos-delay="400">
         <button class="styled-button red" id="back" onclick="location.href = 'index.html'">Back</button>
       </div>
     </div>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
   </body>
 </html>

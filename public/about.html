@@ -4,20 +4,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About Page</title>
     <link href="css/styles.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   </head>
   <body>
     <div id="about-page">
-      <div class="header">
+      <div class="header" data-aos="fade-right">
         <h1>About</h1>
         <img src="images/shell.png" />
       </div>
 
-      <div class="about-info">
-        <p>
+      <div data-aos-delay="100" data-aos="fade-right" class="about-info">
+        <p class="descriptive-text">
           <b> Information Problem: </b> Helping people figure out what classes they
           should take after the transition to online.
         </p>
-        <p>
+        <p class="descriptive-text">
           <b> What We Do: </b> We provide UMD INST undergrad students a way to see the
           GPA trends for all of their classes <br> and sections from the past 3
           semesters, since COVID forced us all to study online in Fall 2020. If we notice a <br>
@@ -27,9 +28,13 @@
         </p>
       </div>
 
-      <div class="nav-buttons">
+      <div data-aos-delay="200" data-aos="fade-right" class="nav-buttons">
         <button class="styled-button red" id="back" onclick="location.href = 'index.html'">Back</button>
       </div>
     </div>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
   </body>
 </html>
