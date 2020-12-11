@@ -11,6 +11,7 @@
       crossorigin="anonymous"
     ></script>
     <script type="text/javascript">
+<<<<<<< Updated upstream
 
         const grades = JSON.parse(localStorage.getItem("filteredJson"));
 
@@ -61,8 +62,60 @@
         });
       
           chart.render();
+=======
+        const grades = JSON.parse(localStorage.getItem("clickedObject"));
+       
+
+    const firstGrade = grades[0];
+
+    function stringSem(num){
+        if(num == 202001){
+            return "Spring 2020";
+>>>>>>> Stashed changes
         }
-        </script>
+        else if (num == 201908){
+            return "Fall 2019";
+        }
+        else if (num == 201901){
+            return "Spring 2019";
+        }
+    }
+
+
+
+
+    window.onload = function () {
+    var chart = new CanvasJS.Chart("chartContainer", {            
+        title:{
+        text: `Grades for ${firstGrade.course}, Professor: ${firstGrade.professor}, Section: ${firstGrade.section}, Semester: ${stringSem(firstGrade.semester)}`              
+        },
+
+        data: [  //array of dataSeries     
+        { //dataSeries - first quarter
+    /*** Change type "column" to "bar", "area", "line" or "pie"***/        
+        type: "column",
+        dataPoints: [
+        { label: "A+", y: firstGrade["A+"] },
+        { label: "A", y: firstGrade["A"] },
+        { label: "A-", y: firstGrade["A-"] },                                    
+        { label: "B+", y: firstGrade["B+"] },
+        { label: "B", y: firstGrade["B"] },
+        { label: "B-", y: firstGrade["B-"] },
+        { label: "C+", y: firstGrade["C+"] },
+        { label: "C", y: firstGrade["C"]},
+        { label: "C-", y: firstGrade["C-"] },
+        { label: "D+", y: firstGrade["D+"] },
+        { label: "D", y: firstGrade["D"] },
+        { label: "D-", y: firstGrade["D-"] },
+        { label: "F", y: firstGrade["F"] }
+        ]
+    }
+    ]
+    });
+
+  chart.render();
+}
+    </script>
 </head>
 <body>
     <div class = "wrapper">
@@ -78,6 +131,7 @@
             </div>
             <div id="chartContainer" style="height: 300px;">
             </div>
+
             <div class="nav-buttons">
                 <button class="styled-button red" id="about" onclick = "location.href = 'about.html'">About</button><br><br>
                 <button class="styled-button yellow" id="doc" onclick = "location.href = 'doc.html'">Documentation</button><br><br>

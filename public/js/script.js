@@ -2,8 +2,6 @@ const endpoint = 'https://api.planetterp.com/v1/courses?department=INST';
 
 const courses = [];
 
-
-
 fetch("/api",
     {
       method: 'GET'
@@ -69,13 +67,18 @@ function displayMatches(){
     }
 
 }
-
+let count = 0;
+let buttonObjects = [];
 function displayTableRows(){
     const grades = JSON.parse(localStorage.getItem("filteredJson"));
 
     // This is where the sorting happens
     // Group by prof -> order by Sorting 
     const html = grades.map(obj => {
+        
+        
+        buttonObjects.push(obj);
+        count++;
         return `
 
         <tr>
@@ -84,17 +87,27 @@ function displayTableRows(){
                     <td data-column="Section GPA">${calculateSectionGPA(obj.professor, obj.section, obj.semester)}</td>
                     <td data-column="Instructor">${obj.professor}</td>
                     <td class="view-section" data-column="Button">
-                        <button class="red-button yellow" id="view-section" onclick = "location.href = 'graph.html'">View Section</button>
-
-                        
+                        <button class="red-button yellow" id="view-section" onClick="sectionClicked(${count})">View Section</button>
                     </td>
                   </tr>
         `;
+
+        
+
     }).join('');
 
     tableBody.innerHTML = html;
 }
 
+<<<<<<< Updated upstream
+=======
+function sectionClicked(count) {
+    
+    localStorage.setItem("clickedObject", buttonObjects[count-1]);
+    window.location.href = "graph.html";
+}
+
+>>>>>>> Stashed changes
 function passFailRatio(jsonObj){
 
     var nonNormalGrades = 0;
