@@ -84,7 +84,7 @@ function displayTableRows(){
                     <td data-column="Section GPA">${calculateSectionGPA(obj.professor, obj.section, obj.semester)}</td>
                     <td data-column="Instructor">${obj.professor}</td>
                     <td class="view-section" data-column="Button">
-                        <button class="red-button yellow" id="view-section" onclick = "location.href = 'graph.html'">View Section</button>
+                        <button class="red-button yellow" id="view-section" onclick = "setLocal('${obj.professor}','${obj.section}','${obj.semester}');location.href = 'graph.html'">View Section</button>
 
                         
                     </td>
@@ -93,6 +93,12 @@ function displayTableRows(){
     }).join('');
 
     tableBody.innerHTML = html;
+}
+
+function setLocal(prof, section, sem){
+    localStorage.setItem("prof", prof);
+    localStorage.setItem("section", section);
+    localStorage.setItem("sem", sem);
 }
 
 function passFailRatio(jsonObj){
