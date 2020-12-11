@@ -17,28 +17,18 @@
       const sectionClick = localStorage.getItem("section");
       const semClick = localStorage.getItem("sem");
 
-      const firstGrade = grades[0];
+      var x = 0;
 
-      /* for (var i in grades) {
-        if (
-            i["prof"] == profClick &&
-            i["section"] == sectionClick &&
-            i["semester"] == semClick
-          ) {
-              firstGrade = i;
-          }
-      } */
-
-
-      function stringSem(num) {
-        if (num == 202001) {
-          return "Spring 2020";
-        } else if (num == 201908) {
-          return "Fall 2019";
-        } else if (num == 201901) {
-          return "Spring 2019";
+        for (var i = 0; i < grades.length; i++){
+            if (grades[i].professor == profClick && grades[i].section == sectionClick && grades[i].semester == semClick) {
+              break;
+            }
+            else{
+              x = x + 1;
+            }
         }
-      }
+
+        const firstGrade = grades[x];
 
       window.onload = function () {
         var chart = new CanvasJS.Chart("chartContainer", {

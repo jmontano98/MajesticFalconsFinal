@@ -70,6 +70,16 @@ function displayMatches(){
 
 }
 
+function stringSem(num) {
+    if (num == 202001) {
+      return "Spring 2020";
+    } else if (num == 201908) {
+      return "Fall 2019";
+    } else if (num == 201901) {
+      return "Spring 2019";
+    }
+}
+
 function displayTableRows(){
     const grades = JSON.parse(localStorage.getItem("filteredJson"));
 
@@ -82,6 +92,7 @@ function displayTableRows(){
                     <td data-column="Section">${obj.section}</td>
                     <td data-column="P/F/W vs. Letter Grading:"><div class="trend">${passFailRatio(obj)}</div></td>
                     <td data-column="Section GPA">${calculateSectionGPA(obj.professor, obj.section, obj.semester)}</td>
+                    <td data-column="Semester">${stringSem(obj.semester)}</td>
                     <td data-column="Instructor">${obj.professor}</td>
                     <td class="view-section" data-column="Button">
                         <button class="red-button yellow" id="view-section" onclick = "setLocal('${obj.professor}','${obj.section}','${obj.semester}');location.href = 'graph.html'">View Section</button>
