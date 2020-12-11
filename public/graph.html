@@ -11,37 +11,52 @@
       crossorigin="anonymous"
     ></script>
     <script type="text/javascript">
+
+        const grades = JSON.parse(localStorage.getItem("filteredJson"));
+
+        const firstGrade = grades[0];
+
+        function stringSem(num){
+            if(num == 202001){
+                return "Spring 2020";
+            }
+            else if (num == 201908){
+                return "Fall 2019";
+            }
+            else if (num == 201901){
+                return "Spring 2019";
+            }
+        }
+
+        
+
+
         window.onload = function () {
           var chart = new CanvasJS.Chart("chartContainer", {            
             title:{
-              text: "Fruits sold in First & Second Quarter"              
+              text: `Grades for ${firstGrade.course}, Professor: ${firstGrade.professor}, Section: ${firstGrade.section}, Semester: ${stringSem(firstGrade.semester)}`              
             },
       
             data: [  //array of dataSeries     
             { //dataSeries - first quarter
          /*** Change type "column" to "bar", "area", "line" or "pie"***/        
              type: "column",
-             name: "First Quarter",
              dataPoints: [
-             { label: "banana", y: 58 },
-             { label: "orange", y: 69 },
-             { label: "apple", y: 60 },                                    
-             { label: "mango", y: 74 },
-             { label: "grape", y: 64 }
+             { label: "A+", y: firstGrade["A+"] },
+             { label: "A", y: firstGrade["A"] },
+             { label: "A-", y: firstGrade["A-"] },                                    
+             { label: "B+", y: firstGrade["B+"] },
+             { label: "B", y: firstGrade["B"] },
+             { label: "B-", y: firstGrade["B-"] },
+             { label: "C+", y: firstGrade["C+"] },
+             { label: "C", y: firstGrade["C"]},
+             { label: "C-", y: firstGrade["C-"] },
+             { label: "D+", y: firstGrade["D+"] },
+             { label: "D", y: firstGrade["D"] },
+             { label: "D-", y: firstGrade["D-"] },
+             { label: "F", y: firstGrade["F"] }
              ]
-           },
-           { //dataSeries - second quarter
-      
-            type: "column",
-            name: "Second Quarter",                
-            dataPoints: [
-            { label: "banana", y: 63 },
-            { label: "orange", y: 73 },
-            { label: "apple", y: 88 },                                    
-            { label: "mango", y: 77 },
-            { label: "grape", y: 60 }
-            ]
-          }
+           }
           ]
         });
       
@@ -61,7 +76,7 @@
                     
                 
             </div>
-            <div id="chartContainer" style="height: 300px; width: 100%;">
+            <div id="chartContainer" style="height: 300px;">
             </div>
             <div class="nav-buttons">
                 <button class="styled-button red" id="about" onclick = "location.href = 'about.html'">About</button><br><br>
