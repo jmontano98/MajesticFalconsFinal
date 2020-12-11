@@ -87,7 +87,6 @@ function displayTableRows(){
     // Group by prof -> order by Sorting 
     const html = grades.map(obj => {
         return `
-
         <tr>
                     <td data-column="Section">${obj.section}</td>
                     <td data-column="P/F/W vs. Letter Grading:"><div class="trend">${passFailRatio(obj)}</div></td>
@@ -513,8 +512,3 @@ function professorSections(professorName) {
 
     console.log(professorSpecific);
 }
-
-
-
-
-
