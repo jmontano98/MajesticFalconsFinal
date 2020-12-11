@@ -1,92 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Detailed View</title>
-    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet" />
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
       crossorigin="anonymous"
     ></script>
     <script type="text/javascript">
-         const grades = JSON.parse(localStorage.getItem("filteredJson"));
+      const grades = JSON.parse(localStorage.getItem("filteredJson"));
 
-const firstGrade = grades[0];
+      const profClick = localStorage.getItem("prof");
+      const sectionClick = localStorage.getItem("section");
+      const semClick = localStorage.getItem("sem");
 
-function stringSem(num){
-    if(num == 202001){
-        return "Spring 2020";
-    }
-    else if (num == 201908){
-        return "Fall 2019";
-    }
-    else if (num == 201901){
-        return "Spring 2019";
-    }
-}
+      var x = 0;
 
+        for (var i = 0; i < grades.length; i++){
+            if (grades[i].professor == profClick && grades[i].section == sectionClick && grades[i].semester == semClick) {
+              break;
+            }
+            else{
+              x = x + 1;
+            }
+        }
 
+        const firstGrade = grades[x];
 
+      window.onload = function () {
+        var chart = new CanvasJS.Chart("chartContainer", {
+          title: {
+            text: `Grades for ${firstGrade.course}, Professor: ${
+              firstGrade.professor
+            }, Section: ${firstGrade.section}, Semester: ${stringSem(
+              firstGrade.semester
+            )}`,
+          },
 
-window.onload = function () {
-  var chart = new CanvasJS.Chart("chartContainer", {            
-    title:{
-      text: `Grades for ${firstGrade.course}, Professor: ${firstGrade.professor}, Section: ${firstGrade.section}, Semester: ${stringSem(firstGrade.semester)}`              
-    },
+          data: [
+            //array of dataSeries
+            {
+              //dataSeries - first quarter
+              /*** Change type "column" to "bar", "area", "line" or "pie"***/
+              type: "column",
+              dataPoints: [
+                { label: "A+", y: firstGrade["A+"] },
+                { label: "A", y: firstGrade["A"] },
+                { label: "A-", y: firstGrade["A-"] },
+                { label: "B+", y: firstGrade["B+"] },
+                { label: "B", y: firstGrade["B"] },
+                { label: "B-", y: firstGrade["B-"] },
+                { label: "C+", y: firstGrade["C+"] },
+                { label: "C", y: firstGrade["C"] },
+                { label: "C-", y: firstGrade["C-"] },
+                { label: "D+", y: firstGrade["D+"] },
+                { label: "D", y: firstGrade["D"] },
+                { label: "D-", y: firstGrade["D-"] },
+                { label: "F", y: firstGrade["F"] },
+              ],
+            },
+          ],
+        });
 
-    data: [  //array of dataSeries     
-    { //dataSeries - first quarter
- /*** Change type "column" to "bar", "area", "line" or "pie"***/        
-     type: "column",
-     dataPoints: [
-     { label: "A+", y: firstGrade["A+"] },
-     { label: "A", y: firstGrade["A"] },
-     { label: "A-", y: firstGrade["A-"] },                                    
-     { label: "B+", y: firstGrade["B+"] },
-     { label: "B", y: firstGrade["B"] },
-     { label: "B-", y: firstGrade["B-"] },
-     { label: "C+", y: firstGrade["C+"] },
-     { label: "C", y: firstGrade["C"]},
-     { label: "C-", y: firstGrade["C-"] },
-     { label: "D+", y: firstGrade["D+"] },
-     { label: "D", y: firstGrade["D"] },
-     { label: "D-", y: firstGrade["D-"] },
-     { label: "F", y: firstGrade["F"] }
-     ]
-   }
-  ]
-});
-
-  chart.render();
-}
+        chart.render();
+      };
     </script>
-</head>
-<body>
-    <div class = "wrapper">
-        <div class = "container flex-outer">
-            <div class = "header">
-                <img src = "images/shell.png">
-                <div class="graph-header">
-                    
-                </div>
-                
-                    
-                
-            </div>
-            <div id="chartContainer" style="height: 300px;">
-            </div>
-
-            <div class="nav-buttons">
-                <button class="styled-button red" id="about" onclick = "location.href = 'about.html'">About</button><br><br>
-                <button class="styled-button yellow" id="doc" onclick = "location.href = 'doc.html'">Documentation</button><br><br>
-                <button class="styled-button red" id="back" onclick = "location.href = 'sections.html'">Back to sections</button><br><br>
-                <button class="styled-button yellow" id="back" onclick = "location.href = 'index.html'">Back to home</button>
-            </div>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container flex-outer">
+        <div class="header">
+          <img src="images/shell.png" />
+          <div class="graph-header"></div>
         </div>
+        <div id="chartContainer" style="height: 300px"></div>
+        <div class="nav-buttons">
+          <button
+            class="styled-button red"
+            id="about"
+            onclick="location.href = 'about.html'"
+          >
+            About</button
+          ><br /><br />
+          <button
+            class="styled-button yellow"
+            id="doc"
+            onclick="location.href = 'doc.html'"
+          >
+            Documentation</button
+          ><br /><br />
+          <button
+            class="styled-button red"
+            id="back"
+            onclick="location.href = 'sections.html'"
+          >
+            Back to Sections</button
+          ><br /><br />
+          <button
+            class="styled-button yellow"
+            id="back"
+            onclick="location.href = 'index.html'"
+          >
+            Back to Home
+          </button>
+        </div>
+      </div>
     </div>
     <script src="js/canvasjs.min.js"></script>
     <script src="js/script.js"></script>
-</body>
+  </body>
 </html>
