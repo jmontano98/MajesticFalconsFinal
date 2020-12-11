@@ -9,19 +9,19 @@
     integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="
     crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;600&display=swap" rel="stylesheet"> 
-
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
     <div class="wrapper">
       <div class="container flex-outer">
-        <div class="header row justify-content-center">
+        <div class="header row justify-content-center" data-aos="fade-right" >
           <img src="images/shell.png" />
           <h1>Info Terp</h1>
         </div>
 
         <div class="row justify-content-center">
           <div class="col-6">
-            <form class="search-bar">
+            <form class="search-bar" data-aos="fade-right" data-aos-delay="100">
               <div class="form-group">
                 <label for="Search" class="label-search">Search</label>
                 <input
@@ -41,12 +41,16 @@
         </div>
         
         <div class="nav-buttons">
-            <button class="styled-button red" id="about" onclick = "location.href = 'about.html'">About</button><br><br>
-            <button class="styled-button yellow" id="doc" onclick = "location.href = 'doc.html'">Documentation</button>
+            <button data-aos-delay="200"data-aos="fade-up" class="styled-button red" id="about" onclick = "location.href = 'about.html'">About</button><br><br>
+            <button data-aos-delay="300" data-aos="fade-up" class="styled-button yellow" id="doc" onclick = "location.href = 'doc.html'">Documentation</button>
         </div>
       </div>
     </div>
     <script src="js/script.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
   </body>
 
 

@@ -10,6 +10,7 @@
       integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
       crossorigin="anonymous"
     ></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script type="text/javascript">
       const grades = JSON.parse(localStorage.getItem("filteredJson"));
 
@@ -74,14 +75,15 @@
       <div class="container flex-outer">
         <div class="header">
           <img src="images/shell.png" />
-          <div class="graph-header"></div>
+          <div data-aos="fade-right" class="graph-header"></div>
         </div>
-        <div id="chartContainer" style="height: 300px"></div>
+        <div data-aos="fade-right" id="chartContainer" style="height: 300px"></div>
         <div class="nav-buttons">
           <button
             class="styled-button red"
             id="about"
             onclick="location.href = 'about.html'"
+            data-aos="fade-up"
           >
             About</button
           ><br /><br />
@@ -89,6 +91,7 @@
             class="styled-button yellow"
             id="doc"
             onclick="location.href = 'doc.html'"
+            data-aos="fade-up"
           >
             Documentation</button
           ><br /><br />
@@ -96,6 +99,7 @@
             class="styled-button red"
             id="back"
             onclick="location.href = 'sections.html'"
+            data-aos="fade-up"
           >
             Back to Sections</button
           ><br /><br />
@@ -103,6 +107,7 @@
             class="styled-button yellow"
             id="back"
             onclick="location.href = 'index.html'"
+            data-aos="fade-up"
           >
             Back to Home
           </button>
@@ -111,5 +116,9 @@
     </div>
     <script src="js/canvasjs.min.js"></script>
     <script src="js/script.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
   </body>
 </html>

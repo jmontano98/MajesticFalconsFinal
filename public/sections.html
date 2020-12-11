@@ -6,23 +6,25 @@
     <link href="css/styles.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;600&display=swap" rel="stylesheet"> 
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
 </head>
 <body>
     <div class="wrapper">
         <div class="container flex-outer">
-            <div class="header row justify-content-center">
+            <div class="header row justify-content-center" data-aos="fade-right">
                 <img src="images/shell.png" />
                 <h1>Info Terp</h1>
             </div>
         </div>
     </div>
 
-    <div class="table-wrapper">
+    <div class="table-wrapper" data-aos="fade-right">
         <div class="table-container">
-            <h2 class="table-header">Sections for</h2>
+            <h2 class="table-header" data-aos="fade-right">Sections for</h2>
             <table>
                 <thead>
-                  <tr>
+                  <tr data-aos="fade-right">
                     <th>Section</th>
                     <th>P/F/W vs. Letter Grading:</th>
                     <th>Section GPA</th>
@@ -31,7 +33,7 @@
                     <th></th>
                   </tr>
                 </thead>
-                <tbody class="table-body">
+                <tbody class="table-body" data-aos="fade-right">
                 </tbody>
               </table>
         </div>
@@ -39,7 +41,7 @@
 
         <div class="row justify-content-center">
           <div class="filtered">
-            <ul class="suggestions"></ul>
+            <ul class="suggestions" ></ul>
           </div>
         </div>
 
@@ -52,6 +54,10 @@
       </div>
     </div>
     <script src="js/script.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
   </body>
 
 
