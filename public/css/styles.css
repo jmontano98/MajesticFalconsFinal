@@ -383,6 +383,7 @@ td, th {
     text-align:center;
     line-height:25px;
     margin-top:20px;
+}
 
 .nav-buttons {
     margin-bottom: 120px;
@@ -412,6 +413,7 @@ td, th {
         padding:10px 10px;
         font-size:12px;
     }
+
 
     .four .styled-button {
         font-size:12px;
