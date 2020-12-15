@@ -68,9 +68,11 @@
 
         chart.render();
       };
+      
+      
     </script>
   </head>
-  <body>
+  <body class="margin-bottom">
     <div class="wrapper">
       <div class="container flex-outer">
         <div class="header">
@@ -80,6 +82,23 @@
 
         <div data-aos="fade-right" class="chart-holder">
             <div  id="chartContainer" style="height: 300px"></div>
+        </div>
+
+        <div class="chart-row-two">
+            <div class="chart-left">
+                <div class="top-bar"></div>
+                <div class="chart-container">
+                    <div class="metric-text" id="total-students-taught">A</div>
+                    <div class="metric-subtext">Students taught in this course by this professor over the past three semesters</div>
+                </div>
+            </div>
+            <div class="chart-right">
+                <div class="top-bar-reverse"></div>
+                <div class="chart-container">
+                    <div class="metric-text" id="percent-pass-fail">27%</div>
+                    <div class="metric-subtext">Percent of students in this section who opted in for a P/F grading method</div>
+                </div>
+            </div>
         </div>
 
 
@@ -134,6 +153,10 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
       AOS.init();
+    </script>
+    <script>
+      $("#total-students-taught").text(professorTotalStudents(profClick));
+      $("#percent-pass-fail").text(calculatePassFail(profClick, sectionClick, semClick));
     </script>
   </body>
 </html>

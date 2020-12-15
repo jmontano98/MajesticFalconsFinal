@@ -134,6 +134,26 @@ function passFailRatio(jsonObj){
 
 }
 
+function passFailPercentage(jsonObj) {
+    var nonNormalGrades = 0;
+    var normalGrades  = 0;
+
+    for(var i in jsonObj){
+
+        var key = i;
+        var val = jsonObj[i];
+
+        if( key != 'Other' && key != 'W' && key != 'course' && key != 'professor' && key != 'section' && key != 'semester'){
+            normalGrades += val;
+        }
+    }
+
+    nonNormalGrades = jsonObj.Other + jsonObj.W;
+
+
+    return nonNormalGrades/normalGrades;
+}
+
 function calculateGPAs() {
     // https://jsfiddle.net/xnvqLgf5/
     return 
@@ -293,7 +313,6 @@ function allCourses() {
 }
 
 // Takes in the professors name and returns the professors average GPA across all semesters & sections for the class
-// Example --> professorTotalGPA("Byeol Kim") --> returns 3.550769230769231 (unrounded) (integer)
 function professorTotalGPA(professorsName) {
 
     let rawData = JSON.parse(localStorage.getItem("filteredJson")); // Raw course data
@@ -469,14 +488,94 @@ function calculateSectionGPA(professorsName, section, semester) {
     }
 }
 
-// Takes in professors name, outputs array of all sections that professor taught across all semesters, in array format
-function professorSections(professorName) {
+function calculatePassFail(professorsName, section, semester) {
+
+    let rawData = JSON.parse(localStorage.getItem("filteredJson")); // Raw course data
+    let unfilteredProfessors = []; // Single array containing all professor names for the class
+    let filteredProfessors = []; // Single array containing all the unique professor names for the class
+    
+    let professorClasses = []; // Double array [Professor's Name][All the sections they teach for the past semesters (as objects)]
+    let sectionGPA = [];
+
+    for (let i = 0; i < rawData.length; i++) {
+        unfilteredProfessors.push(rawData[i].professor);
+    }
+
+    filteredProfessors = [...new Set(unfilteredProfessors)];
+
+    // Fills the professorClasses double array with professor names
+    for (let l = 0; l < filteredProfessors.length; l++) {
+        sectionGPA.push([filteredProfessors[l]]);
+        professorClasses.push([filteredProfessors[l]]);
+    }
+
+    for (let k = 0; k < professorClasses.length; k++) {
+        for (let j = 0; j < rawData.length; j++) {
+            
+            // Find match by professor's name
+            if (professorClasses[k][0] === rawData[j].professor) {
+                professorClasses[k].push(rawData[j]);
+
+            }
+        }
+    }
+
+    var nonNormalGrades = 0;
+    var normalGrades  = 0;
+
+    let currentSection; 
+    let points = 0;
+    let totalGrades;
+
+    // Calculate average GPA for each professor across all their sections
+    for (let q = 0; q < professorClasses.length; q++) {
+       
+        students = 0; // Number of grade objects (students)
+        nonNormalGrades = 0;
+
+        // This for loop goes into each section per professor
+        for (let insideSection = 1; insideSection < professorClasses[q].length; insideSection++) {
+            currentSection = professorClasses[q][insideSection];
+            
+            students += 
+                (currentSection["A+"]) + (currentSection["A"]) + (currentSection["A-"]) + 
+                (currentSection["B+"]) + (currentSection["B"]) + (currentSection["B-"]) +
+                (currentSection["C+"]) + (currentSection["C"]) + (currentSection["C-"]) +
+                (currentSection["D+"]) + (currentSection["D"]) + (currentSection["D-"]) + 
+                (currentSection["F"]) + (currentSection["Other"]) +  (currentSection["W"]);
+
+            nonNormalGrades = nonNormalGrades + (currentSection["Other"]) + (currentSection["W"]);
+
+            currentSection["percentage"] = (Number((nonNormalGrades/students).toFixed(2)));
+
+            students = 0;
+            nonNormalGrades = 0;
+        }
+    }
+
+    // Fetches average section GPA, returns it as an integer
+    for (let i = 0; i < professorClasses.length; i++) {
+        for (let j = 0; j < professorClasses[i].length; j++) {
+            if (professorClasses[i][0] === professorsName) {
+                if (professorClasses[i][j]["section"] === section) {
+                    if (professorClasses[i][j]["semester"] === semester) {
+                        return (Number(professorClasses[i][j]["percentage"] * 100).toFixed(2)) + "%";
+                    }
+                }
+            }
+        }
+    }
+}
+
+// returns the total number of students taught by the professor over the past few semesters
+function professorTotalStudents(professorsName) {
+
     let rawData = JSON.parse(localStorage.getItem("filteredJson")); // Raw course data
     let unfilteredProfessors = []; // Single array containing all professor names for the class
     let filteredProfessors = []; // Single array containing all the unique professor names for the class
     let professorClasses = []; // Double array [Professor's Name][All the sections they teach for the past semesters (as objects)]
-    
-    
+    let professorStudentsTotal= []; 
+        
 
     // Creates a list of professors 
     for (let i = 0; i < rawData.length; i++) {
@@ -489,6 +588,7 @@ function professorSections(professorName) {
     // Fills the professorClasses double array with professor names
     for (let l = 0; l < filteredProfessors.length; l++) {
         professorClasses.push([filteredProfessors[l]]);
+        professorStudentsTotal.push([filteredProfessors[l]]);
     }
 
     // Grab section data (grades) for each professor for the past semesters, inject it into professorClasses as an object (if a prof has three objects in their name, it means they taught 3 sections)
@@ -502,13 +602,42 @@ function professorSections(professorName) {
             }
         }
     }
+    let professorSemesterAvg = [];
+  
+    let currentSection; 
+    let points = 0;
+    let totalGrades;
 
-    let professorSpecific = [];
-    for (let i = 0; i < professorClasses.length; i++) {
-        if (professorClasses[i][0] === professorName) {
-            professorSpecific.push(professorClasses[i]);        
-         }
+    // Calculate average GPA for each professor across all their sections
+    for (let q = 0; q < professorClasses.length; q++) {
+       
+        students = 0; // Number of grade objects (students)
+
+        // This for loop goes into each section per professor
+        for (let insideSection = 1; insideSection < professorClasses[q].length; insideSection++) {
+            currentSection = professorClasses[q][insideSection];
+            
+            students += 
+                (currentSection["A+"]) + (currentSection["A"]) + (currentSection["A-"]) + 
+                (currentSection["B+"]) + (currentSection["B"]) + (currentSection["B-"]) +
+                (currentSection["C+"]) + (currentSection["C"]) + (currentSection["C-"]) +
+                (currentSection["D+"]) + (currentSection["D"]) + (currentSection["D-"]) + 
+                (currentSection["F"]) + (currentSection["Other"]) +  (currentSection["W"]);
+        }
+
+        // Inject total students for the professorStudentsTotal array
+        for (let j = 0; j < professorStudentsTotal.length; j++) {
+            if (professorClasses[q][0] === professorStudentsTotal[j][0]) {
+                professorStudentsTotal[j][1] = students;
+            }
+        }
     }
 
-    console.log(professorSpecific);
-}
+    console.log(professorStudentsTotal);
+
+    for (let k = 0; k < professorStudentsTotal.length; k++) {
+        if (professorStudentsTotal[k][0] === professorsName) {
+           return professorStudentsTotal[k][1];
+        }
+    }
+}   
