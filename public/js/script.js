@@ -2,8 +2,6 @@ const endpoint = 'https://api.planetterp.com/v1/courses?department=INST';
 
 const courses = [];
 
-
-
 fetch("/api",
     {
       method: 'GET'
@@ -31,6 +29,17 @@ async function submitSelection(course_number){
     localStorage.setItem("course", course_number);
     const courseGradeInfo = await request.json();
     filterSemesters(courseGradeInfo);
+}
+
+
+async function putReq(course_number){
+    const request = await fetch('/api', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({course_num: course_number})
+    })
 }
 
 function filterSemesters(json){

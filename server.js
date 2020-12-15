@@ -45,8 +45,8 @@ app
     res.json(json);
   })
 
-  .put((req, res) => {
-    console.log("PUT Request Detected");
+  .put(async(req, res) => {
+    console.log("PUT Request Detected. Status Code is:", res.statusCode);
   });
 
 app.listen(port, () => {
