@@ -568,7 +568,7 @@ function calculatePassFail(professorsName, section, semester) {
             if (professorClasses[i][0] === professorsName) {
                 if (professorClasses[i][j]["section"] === section) {
                     if (professorClasses[i][j]["semester"] === semester) {
-                        return (Number(professorClasses[i][j]["percentage"] * 100).toFixed(2)) + "%";
+                        return (Math.round(professorClasses[i][j]["percentage"] * 100)) + "%";
                     }
                 }
             }
